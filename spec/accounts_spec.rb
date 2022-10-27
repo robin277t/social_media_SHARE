@@ -37,5 +37,25 @@ RSpec.describe AccountsRepo do
 
     end  
 
+    it "creates new account in accounts" do
+      repo = AccountsRepo.new
+      repo.create("Jeff","JJ@gmail.com")
+      expect(repo.find('3')[0].username).to eq 'Jeff'
+    end
+
+    it "deletes record from accounts" do
+
+      repo = AccountsRepo.new
+      repo.delete("David")
+      expect{repo.find('1')[0].username}.to raise_error
 
     end
+
+    it "update email address" do
+      repo = AccountsRepo.new
+      repo.update("timothy@yahoo.com", "tim@yahoo.com")
+      expect(repo.find('2')[0].email).to eq 'tim@yahoo.com'
+    end
+
+
+  end

@@ -42,29 +42,25 @@ class AccountsRepo
           end
           return accounts
   
-        #results.each do |record|
-          
-        #acc.id = record['id']
-         # acc.username = record['username']
-          #acc.email = record['email']
-          
-          #accounts << acc
-        #end
-        #return accounts
     end
 
 
-    def create(acc)
+    def create(username, email)
+        sql = "INSERT INTO accounts (username, email) VALUES ($1, $2)"
+        results = DatabaseConnection.exec_params(sql, [username, email])
 
     end
 
 
-    def delete(acc)
-
+    def delete(username)
+        sql = "DELETE FROM accounts where username = $1"
+        results = DatabaseConnection.exec_params(sql, [username])
     end
 
 
-    def update(acc)
+    def update(oldval, newval)
+        sql = "UPDATE accounts SET email = $2  WHERE email = $1" 
+        results = DatabaseConnection.exec_params(sql, [oldval, newval])
 
     end
 
