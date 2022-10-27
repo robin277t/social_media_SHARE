@@ -13,9 +13,29 @@ RSpec.describe AccountsRepo do
         reset_socials
     end
 
-it "test1" do
+    it "returns all of the items in the table" do
+      repo = AccountsRepo.new
 
-end
+      
+
+      accounts = repo.all
+
+      expect(accounts[0].id).to eq '1'
+      expect(accounts[0].username).to eq 'David'
+      expect(accounts[0].email).to eq 'dave@gmail.com'
+    end
+
+    it 'finds a piece of data with the id as an arg' do
+      repo = AccountsRepo.new
+
+      account = Accounts.new
+
+      result = repo.find('2')
+      expect(result[0].id).to eq '2'
+      expect(result[0].username).to eq 'Tim'
+      expect(result[0].email).to eq 'timothy@yahoo.com'
+
+    end  
 
 
-end
+    end
